@@ -1,7 +1,9 @@
 package com.alan.music_catalog_insights.config;
-
-import java.security.Key;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import java.util.Date;
+
+import javax.crypto.SecretKey;
 
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ public class JwtService {
     private static final String SECRET_KEY =
             "mysecretkeymysecretkeymysecretkey123456";
 
-    private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
     @SuppressWarnings("deprecation")
 	public String generateToken(String email) {
@@ -27,4 +29,31 @@ public class JwtService {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
+    public String extractEmail(String token) {
+
+        Claims claims = Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        return claims.getSubject();
+    }
+    public boolean isTokenValid(String token) {
+
+        try {
+
+            Jwts.parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token);
+
+            return true;
+
+        } catch (JwtException | IllegalArgumentException e) {
+
+            return false;
+        }
+    }
+
 }

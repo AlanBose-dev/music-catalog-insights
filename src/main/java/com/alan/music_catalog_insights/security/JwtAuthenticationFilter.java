@@ -1,9 +1,15 @@
 package com.alan.music_catalog_insights.security;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Collections;
 import java.io.IOException;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.alan.music_catalog_insights.config.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,7 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
+	@Autowired
+	private JwtService jwtService;
 	@Override
 	protected void doFilterInternal(
 	        HttpServletRequest request,
@@ -22,7 +29,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	    String authHeader = request.getHeader("Authorization");
 
-	    System.out.println("Authorization Header: " + authHeader);
+	    if (authHeader != null && authHeader.startsWith("Bearer ")) {
+
+	        String token = authHeader.substring(7);
+
+	        if (jwtService.isTokenValid(token)) {
+
+	            String email = jwtService.extractEmail(token);
+
+	            UsernamePasswordAuthenticationToken authentication =
+	                    new UsernamePasswordAuthenticationToken(
+	                            email,
+	                            null,
+	                            Collections.emptyList()
+	                    );
+
+	            SecurityContextHolder.getContext().setAuthentication(authentication);
+	        }
+	    }
 
 	    filterChain.doFilter(request, response);
 	}
