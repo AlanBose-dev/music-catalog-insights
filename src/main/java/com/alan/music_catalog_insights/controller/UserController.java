@@ -1,5 +1,5 @@
 package com.alan.music_catalog_insights.controller;
-
+import com.alan.music_catalog_insights.dto.LoginRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,5 +32,12 @@ public class UserController {
 
 	public UserService getUserService() {
 		return userService;
+	}
+	
+	@PostMapping("/login")
+	public String login(@RequestBody LoginRequest request) {
+
+	    return userService.login(request);
+
 	}
 }
