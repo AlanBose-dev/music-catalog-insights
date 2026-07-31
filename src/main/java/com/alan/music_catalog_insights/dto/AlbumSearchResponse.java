@@ -8,6 +8,9 @@ public class AlbumSearchResponse {
     private String releaseDate;
     private Double price;
     private String artworkUrl;
+    private Long appleCatalogId;
+
+    private Integer trackCount;
 
     public AlbumSearchResponse() {
     }
@@ -71,4 +74,20 @@ public class AlbumSearchResponse {
     public void setArtworkUrl(String artworkUrl) {
         this.artworkUrl = artworkUrl;
     }
+
+	public Long getAppleCatalogId() {
+		return appleCatalogId;
+	}
+
+	public void setAppleCatalogId(Long appleCatalogId) {
+		this.appleCatalogId = appleCatalogId;
+	}
+
+	public Integer getTrackCount() {
+		return trackCount;
+	}
+
+	public void setTrackCount(Integer trackCount) {
+		this.trackCount = trackCount;
+	}
 }

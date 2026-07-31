@@ -10,6 +10,7 @@ import java.util.List;
 import com.alan.music_catalog_insights.dto.AlbumSearchResponse;
 import com.alan.music_catalog_insights.dto.AlbumUpdateRequest;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alan.music_catalog_insights.service.AlbumService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/albums")
@@ -34,7 +37,7 @@ public class AlbumController {
     }
     
     @PostMapping("/save")
-    public Album saveAlbum(@RequestBody Album album) {
+    public Album saveAlbum(@Valid @RequestBody Album album) {
         return albumService.saveAlbum(album);
     }
     
@@ -47,6 +50,13 @@ public class AlbumController {
                              @RequestBody AlbumUpdateRequest request) {
 
         return albumService.updateAlbum(id, request);
+    }
+    @DeleteMapping("/{id}")
+    public String deleteAlbum(@PathVariable Long id) {
+
+        albumService.deleteAlbum(id);
+
+        return "Album deleted successfully.";
     }
     
 }

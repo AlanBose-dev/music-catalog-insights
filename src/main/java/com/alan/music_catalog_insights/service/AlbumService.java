@@ -57,6 +57,9 @@ this.restTemplate = restTemplate;
 	        response.setGenre(album.path("primaryGenreName").asText());
 
 	        response.setReleaseDate(album.path("releaseDate").asText());
+	        response.setAppleCatalogId(album.path("collectionId").asLong());
+
+	        response.setTrackCount(album.path("trackCount").asInt());
 
 	        JsonNode priceNode = album.path("collectionPrice");
 
@@ -92,4 +95,10 @@ this.restTemplate = restTemplate;
 	    return albumRepository.save(album);
 	}
 	
+	public void deleteAlbum(Long id) {
+
+	    System.out.println("Delete method called with id = " + id);
+
+	    throw new RuntimeException("Album not found");
+	}
 }

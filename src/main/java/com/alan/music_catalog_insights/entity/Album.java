@@ -1,5 +1,12 @@
 package com.alan.music_catalog_insights.entity;
 
+import java.time.LocalDateTime;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,20 +17,30 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long appleCatalogId;
+
+    
+    @NotBlank(message = "Album name is required")
     private String albumName;
-
+    @NotBlank(message = "Artist name is required")
     private String artistName;
-
+    @NotBlank(message = "Genre is required")
     private String genre;
-
     private String releaseDate;
+    
+    private Integer trackCount;
 
     private String artworkUrl;
 
+    @NotNull(message = "Price is required")
     private Double price;
 
-    private Integer rating;
 
+  
+    
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating cannot be more than 5")
+    private Integer rating;
     @Column(length = 1000)
     private String notes;
 
@@ -101,4 +118,25 @@ public class Album {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+	public Long getAppleCatalogId() {
+		return appleCatalogId;
+	}
+
+	public void setAppleCatalogId(Long appleCatalogId) {
+		this.appleCatalogId = appleCatalogId;
+	}
+
+	public Integer getTrackCount() {
+		return trackCount;
+	}
+
+	public void setTrackCount(Integer trackCount) {
+		this.trackCount = trackCount;
+	}
+	  @CreationTimestamp
+	    private LocalDateTime createdAt;
+
+	    @UpdateTimestamp
+	    private LocalDateTime updatedAt;
 }
