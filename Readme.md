@@ -4,15 +4,15 @@ Deliverables
 
 GitHub Repositories
 
-Backendhttps://github.com/AlanBose-dev/music-catalog-insights
+Backend : https://github.com/AlanBose-dev/music-catalog-insights
 
-Frontendhttps://github.com/AlanBose-dev/music-catalog-insights-frontend
+Frontend : https://github.com/AlanBose-dev/music-catalog-insights-frontend
 
 Live Deployment
 
-Frontendhttps://music-catalog-insights-frontend-ten.vercel.app
+Frontend : https://music-catalog-insights-frontend-ten.vercel.app
 
-Backendhttps://music-catalog-insights-production-eaae.up.railway.app
+Backend : https://music-catalog-insights-production-eaae.up.railway.app
 
 Demo Credentials
 
@@ -34,7 +34,7 @@ Save Albums
 
 Personal Library
 
-Rating & Notes
+Rating 
 
 Delete Albums
 
@@ -102,8 +102,6 @@ price
 
 rating
 
-notes
-
 Database Schema
 
 users(id,name,email,password)
@@ -124,8 +122,6 @@ Pagination, caching and unit testing are planned future improvements.
 
 Screenshots
 
-Create a folder named screenshots and add:
-
 login.png
 
 search.png
@@ -135,10 +131,6 @@ library.png
 analytics.png
 
 ai-summary.png
-
-Then reference them in README:
-
-
 
 AI-assisted Development
 
@@ -152,4 +144,4 @@ GitHub:https://github.com/AlanBose-dev
 
 Portfolio:https://alanbose.vercel.app
 
-LinkedIn:(Add your LinkedIn URL)
+LinkedIn:https://www.linkedin.com/in/alan-bose/
