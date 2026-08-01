@@ -14,6 +14,8 @@ Frontend : https://music-catalog-insights-frontend-ten.vercel.app
 
 Backend : https://music-catalog-insights-production-eaae.up.railway.app
 
+Note : The backend is secured using JWT authentication. Accessing protected API endpoints directly in a browser will return **403 Forbidden**. Use the frontend application or an API client (e.g., Postman) to access authenticated endpoints.
+
 Demo Credentials
 
 Email: alanbose701@gmail.com
