@@ -115,6 +115,8 @@ AI Feature
 The AI Summary feature analyzes the user's saved music collection and generates a concise summary of ratings and listening preferences.
 
 Trade-offs
+To keep the application focused on the core assignment requirements, the deployed version uses a pre-created demo account instead of a public user registration page.
+This allows evaluators to access the application immediately using the provided demo credentials.User registration is planned as a future enhancement.
 
 Registration omitted from deployed version for simple evaluation.
 
