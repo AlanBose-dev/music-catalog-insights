@@ -39,17 +39,15 @@ public class UserService {
 	    Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
 
 	    if (optionalUser.isEmpty()) {
-	        return "User not found";
+	        throw new RuntimeException("User not found");
 	    }
 
 	    User user = optionalUser.get();
 
-	    if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-
-	        return jwtService.generateToken(user.getEmail());
-
+	    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+	        throw new RuntimeException("Invalid Password");
 	    }
 
-	    return "Invalid Password";
+	    return jwtService.generateToken(user.getEmail());
 	}
 }

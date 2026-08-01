@@ -97,8 +97,9 @@ this.restTemplate = restTemplate;
 	
 	public void deleteAlbum(Long id) {
 
-	    System.out.println("Delete method called with id = " + id);
+	    Album album = albumRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Album not found"));
 
-	    throw new RuntimeException("Album not found");
+	    albumRepository.delete(album);
 	}
 }

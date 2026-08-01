@@ -54,6 +54,8 @@ public class AlbumController {
     @DeleteMapping("/{id}")
     public String deleteAlbum(@PathVariable Long id) {
 
+        System.out.println("DELETE Controller called. ID = " + id);
+
         albumService.deleteAlbum(id);
 
         return "Album deleted successfully.";
